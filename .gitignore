@@ -1,0 +1,62 @@
+# Node.js
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Frontend build
+frontend/dist/
+frontend/.vite/
+
+# Backend build & data
+backend/node_modules/
+backend/ml/models/
+backend/ml/data/__pycache__/
+backend/python/__pycache__/
+backend/ml/data/*.csv
+backend/ml/data/*.json
+backend/ml/models/*.joblib
+backend/ml/models/*.pkl
+backend/ml/models/*.csv
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Mobile
+mobile/node_modules/
+mobile/.expo/
+mobile/android/app/build/
+mobile/android/.gradle/
+mobile/android/.idea/
+mobile/android/local.properties
+mobile/android/.cxx/
+mobile/.vscode/
+
+# IDE/editor
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# System
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Others
+frontend/console.log
+/frontend/.env

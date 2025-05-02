@@ -1,0 +1,47 @@
+# Node.js
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Expo
+.expo/
+.expo-shared/
+
+# Android
+android/app/build/
+android/.gradle/
+android/.idea/
+android/.settings/
+android/build/
+android/local.properties
+android/.DS_Store
+android/app/debug.keystore
+
+# Gradle
+.gradle/
+**/build/
+
+# Local env files
+.env
+.env.*
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+*.log
+*.tmp
+*.bak 

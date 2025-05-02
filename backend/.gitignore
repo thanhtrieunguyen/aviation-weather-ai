@@ -1,0 +1,52 @@
+# Node.js
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment
+.env
+.venv/
+venv/
+ENV/
+
+# Data & Models
+ml/models/*
+!ml/models/*.md
+ml/data/*.csv
+!ml/data/*.md
+
+# ML outputs
+ml/evaluation/results/
+ml/evaluation/reports/
+ml/evaluation/plots/
+ml/evaluation/figures/
+ml/evaluation/benchmark/
+ml/data_predict/
+
+# Large files
+*.joblib
+*.pkl
+*.csv
+*.xlsx
+*.png
+*.html
+*.json
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Misc
+*.bak
+*.tmp 
