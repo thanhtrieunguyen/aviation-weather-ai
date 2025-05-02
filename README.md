@@ -14,6 +14,7 @@
   - [Huấn luyện và đánh giá tất cả mô hình](#huấn-luyện-và-đánh-giá-tất-cả-mô-hình)
   - [Tạo báo cáo đánh giá](#tạo-báo-cáo-đánh-giá)
   - [Sử dụng mô hình để dự báo](#sử-dụng-mô-hình-để-dự-báo)
+  - [Chạy hệ thống dự báo thời tiết sân bay](#chạy-hệ-thống-dự-báo-thời-tiết-sân-bay)
 - [Đóng góp](#đóng-góp)
 - [Liên hệ](#liên-hệ)
 - [License](#license)
@@ -233,6 +234,57 @@ Các tùy chọn:
 - `--test-data`: Đường dẫn đến dữ liệu kiểm thử
 - `--output-dir`: Thư mục lưu biểu đồ
 
+### Chạy hệ thống dự báo thời tiết sân bay
+
+Hệ thống bao gồm module tự động dự báo thời tiết cho các sân bay theo lịch định sẵn (mỗi 30 phút).
+
+#### Yêu cầu
+
+1. Đã huấn luyện và tạo file mô hình `best_weather_models.joblib`
+2. Đã cài đặt các thư viện Python cần thiết:
+   ```bash
+   pip install pandas numpy python-dotenv requests pymongo
+   ```
+3. Có API key cho dịch vụ thời tiết
+
+#### Cấu hình môi trường
+
+Tạo file `.env` trong thư mục `backend`:
+
+```
+WEATHER_API_KEY=your_weather_api_key_here
+MONGO_DB_PASSWORD=your_mongodb_password_here  # Tùy chọn, nếu muốn lưu dữ liệu vào MongoDB
+```
+
+#### Chạy scheduler dự báo tự động
+
+```bash
+cd backend/ml/api
+python airport_scheduler.py
+```
+
+Scheduler sẽ:
+- Chạy mỗi 30 phút (vào đầu giờ và giữa giờ)
+- Thu thập dữ liệu thời tiết hiện tại của các sân bay
+- Dự báo thời tiết trong 12 giờ tới
+- Lưu kết quả vào file CSV tại `backend/ml/data_predict/airport_forecast.csv`
+- Nếu đã cấu hình MongoDB, lưu dữ liệu lên MongoDB
+
+#### Kiểm tra kết quả dự báo
+
+Kết quả dự báo được lưu tại:
+- File CSV: `backend/ml/data_predict/airport_forecast.csv`
+- MongoDB (nếu đã cấu hình)
+
+Mỗi bản ghi dự báo bao gồm:
+- Thông tin sân bay (vị trí, mã IATA/ICAO, tên)
+- Dữ liệu thời tiết hiện tại
+- Dự báo cho các mốc thời gian trong 12 giờ tiếp theo (nhiệt độ, độ ẩm, tốc độ gió, hướng gió, v.v.)
+
+#### Dừng scheduler
+
+Nhấn `Ctrl+C` để dừng quá trình dự báo tự động.
+
 ---
 
 ## Đóng góp
@@ -240,13 +292,6 @@ Các tùy chọn:
 1. Fork dự án, tạo branch mới cho tính năng/bugfix.
 2. Commit code rõ ràng, mô tả chi tiết.
 3. Tạo Pull Request để được review.
-
----
-
-## Thông tin nhóm
-
-- **Nhóm:** 33
-- **Số thành viên:** 3
 
 ---
 
@@ -262,3 +307,12 @@ Một số file cấu hình hoặc mã nguồn mặc định sử dụng địa 
 - Trên Mac/Linux: Mở Terminal, gõ `ifconfig` hoặc `ip a`.
 
 Sau khi xác định IP, hãy sửa lại các file cấu hình/mã nguồn cho phù hợp trước khi chạy hệ thống.
+
+---
+
+## Thông tin nhóm
+
+- **Nhóm:** 33
+- **Số thành viên:** 3
+
+---
